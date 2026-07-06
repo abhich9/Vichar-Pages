@@ -3,46 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vichār - Smart Productivity & Notes</title>
+    <title>Vichār (ThoughtFlow) - AI Voice Notes & Knowledge Graph</title>
     <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; 
-            line-height: 1.6; 
-            color: #333; 
-            max-width: 600px; 
-            margin: 0 auto; 
-            padding: 40px 20px; 
-            text-align: center;
-        }
-        .logo-placeholder {
-            width: 96px;
-            height: 96px;
-            background: #0070f3;
-            color: white;
-            border-radius: 22%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: bold;
-            margin: 0 auto 20px;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+        .logo-placeholder { width: 96px; height: 96px; background: #0070f3; color: white; border-radius: 22%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 20px; }
         h1 { color: #111; margin-bottom: 5px; }
         .developer { color: #666; font-size: 0.9rem; margin-top: 0; }
-        .description { font-size: 1.1rem; color: #444; margin: 30px 0; }
-        .links-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 40px;
-            border-top: 1px solid #e4e4e7;
-            padding-top: 25px;
-        }
-        a {
-            color: #0070f3;
-            text-decoration: none;
-            font-weight: 500;
-        }
+        .description { font-size: 1.1rem; color: #444; margin: 30px 0; text-align: left; }
+        .links-container { display: flex; justify-content: center; gap: 20px; margin-top: 40px; border-top: 1px solid #e4e4e7; padding-top: 25px; }
+        a { color: #0070f3; text-decoration: none; font-weight: 500; }
         a:hover { text-decoration: underline; }
     </style>
 </head>
@@ -52,14 +21,20 @@
     <h1>Vichār</h1>
     <p class="developer">Published by minebusinessdev@gmail.com</p>
 
-    <p class="description">
-        An intuitive, high-performance productivity tool designed for voice recording, fast note-taking, and organizing your thoughts efficiently.
-    </p>
+    <div class="description">
+        <p><strong>Vichār (ThoughtFlow)</strong> is an advanced, local-first productivity tool that turns your voice into structured knowledge.</p>
+        <ul>
+            <li><strong>Intelligent Voice Notes:</strong> Capture audio instantly. Vichār uses a multi-engine fallback system (Groq, HuggingFace, Sarvam) to guarantee high-accuracy transcription in English, Hindi, and Hinglish.</li>
+            <li><strong>Visual Knowledge Graph:</strong> Watch your ideas connect automatically. Our edge AI extracts topics, tasks, and entities to build a visual mind map of your thoughts.</li>
+            <li><strong>RAG Chat Assistant:</strong> Don't just take notes—interrogate them. Chat with your personal AI assistant to query past transcripts and extract cross-referenced insights.</li>
+            <li><strong>Total Privacy Control:</strong> Enable "Offline Only" mode to process audio entirely on-device using local Whisper models, bypassing the cloud completely.</li>
+        </ul>
+    </div>
 
     <div class="links-container">
         <a href="privacy.html">Privacy Policy</a>
         <span>•</span>
-        <a href="datasafety.html">Data Safety & Deletion</a>
+        <a href="datasafety.html">Data Deletion & Safety</a>
     </div>
 
 </body>
