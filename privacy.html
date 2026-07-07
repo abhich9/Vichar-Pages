@@ -59,22 +59,18 @@
         }
         
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; background-color: var(--bg); color: var(--text); }
-        .hero { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, var(--hero1) 0%, var(--hero2) 100%); border-radius: 12px; margin-bottom: 25px; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); box-sizing: border-box; }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px; margin-top: 30px; transition: all 0.4s ease; }
-        .hero img { width: 4.5em; height: 4.5em; display: block; filter: invert(var(--icon-invert)); transition: all 0.4s ease; }
-        .hero h1 { font-size: 4.5em; margin: 0; color: var(--h1-color); line-height: 1; border: none; padding: 0; transition: all 0.4s ease; }
+        .hero { position: sticky; top: 40px; z-index: 100; text-align: center; padding: 30px 20px; background: linear-gradient(135deg, var(--hero1) 0%, var(--hero2) 100%); border-radius: 12px; margin-bottom: 25px; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-sizing: border-box; transform-origin: left top; width: 100%; }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px; margin-top: 30px; transition: all 0.6s ease; }
+        .hero img { width: 4.5em; height: 4.5em; display: block; filter: invert(var(--icon-invert)); transition: all 0.6s ease; }
+        .hero h1 { font-size: 4.5em; margin: 0; color: var(--h1-color); line-height: 1; border: none; padding: 0; transition: all 0.6s ease; }
         h1, h2, h3 { color: var(--h1-color); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-        .hero p.policy-title { font-size: 1.2em; color: var(--sub-color); margin: 0; font-weight: 500; transition: all 0.4s ease; }
+        .hero p.policy-title { font-size: 1.2em; color: var(--sub-color); margin: 0; font-weight: 500; transition: all 0.6s ease; }
 
         @media (min-width: 1440px) {
             .hero.scrolled {
-                position: fixed;
-                top: 40px;
-                left: max(20px, calc(50vw - 450px - 280px));
                 width: 260px;
+                transform: translateX(calc(-50vw + 470px));
                 padding: 20px 15px;
-                margin-bottom: 0;
-                z-index: 100;
                 box-shadow: 0 10px 30px var(--card-shadow);
             }
             .hero.scrolled .hero-title-container { flex-direction: column; gap: 5px; margin-top: 10px; }
@@ -117,7 +113,6 @@
         </div>
         <p class="policy-title">Privacy Policy</p>
     </div>
-    <div id="hero-placeholder" style="display: none;"></div>
     <p style="text-align: center;"><strong>Effective Date:</strong> July 6, 2026</p>
     
     <h2>1. Data Storage & Cloud Synchronization</h2>
@@ -175,19 +170,10 @@
         window.addEventListener('scroll', () => {
             if (window.innerWidth >= 1440) {
                 const hero = document.querySelector('.hero');
-                const placeholder = document.getElementById('hero-placeholder');
-                if (window.scrollY > 150) {
-                    if (!hero.classList.contains('scrolled')) {
-                        placeholder.style.height = hero.offsetHeight + 'px';
-                        placeholder.style.marginBottom = '25px';
-                        placeholder.style.display = 'block';
-                        hero.classList.add('scrolled');
-                    }
+                if (window.scrollY > 20) {
+                    hero.classList.add('scrolled');
                 } else {
                     hero.classList.remove('scrolled');
-                    placeholder.style.display = 'none';
-                    placeholder.style.height = '0px';
-                    placeholder.style.marginBottom = '0px';
                 }
             }
         });
@@ -195,9 +181,7 @@
         window.addEventListener('resize', () => {
             if (window.innerWidth < 1440) {
                 const hero = document.querySelector('.hero');
-                const placeholder = document.getElementById('hero-placeholder');
                 hero.classList.remove('scrolled');
-                placeholder.style.display = 'none';
             }
         });
 
