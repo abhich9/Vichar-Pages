@@ -58,9 +58,9 @@
             }
         }
         
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; background-color: var(--bg); color: var(--text); position: relative; }
-        .hero { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, var(--hero1) 0%, var(--hero2) 100%); border-radius: 12px; margin-bottom: 25px; }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; background-color: var(--bg); color: var(--text); }
+        .hero { position: relative; text-align: center; padding: 30px 20px; background: linear-gradient(135deg, var(--hero1) 0%, var(--hero2) 100%); border-radius: 12px; margin-bottom: 25px; }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px; margin-top: 30px; }
         .hero img { width: 4.5em; height: 4.5em; display: block; filter: invert(var(--icon-invert)); }
         .hero h1 { font-size: 4.5em; margin: 0; color: var(--h1-color); line-height: 1; border: none; padding: 0; }
         h1, h2, h3 { color: var(--h1-color); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
@@ -70,7 +70,7 @@
         a:hover { text-decoration: underline; }
         footer { margin-top: 50px; text-align: center; color: var(--dev-color); font-size: 0.9em; border-top: 1px solid var(--border); padding-top: 25px; }
         
-        .top-controls { display: flex; justify-content: flex-end; align-items: center; gap: 15px; margin-bottom: 20px; z-index: 1000; }
+        .top-controls { position: absolute; top: 15px; right: 15px; display: flex; align-items: center; gap: 15px; z-index: 10; }
         .theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 1rem; }
         .theme-toggle:hover { background: rgba(128,128,128,0.1); }
     </style>
@@ -80,17 +80,16 @@
     </script>
 </head>
 <body>
-    <div class="top-controls">
-        <div id="google_translate_element"></div>
-        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌓</button>
-    </div>
-
-    <div style="text-align: center; padding: 30px 20px; background: linear-gradient(135deg, var(--hero1) 0%, var(--hero2) 100%); border-radius: 12px; margin-bottom: 25px;">
-        <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px;">
+    <div class="hero">
+        <div class="top-controls">
+            <div id="google_translate_element"></div>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌓</button>
+        </div>
+        <div class="hero-title-container">
             <img src="logo.svg" alt="Vichār Logo" style="width: 4.5em; height: 4.5em; display: block;">
             <h1 style="font-size: 4.5em; margin: 0; color: var(--title-color, #222); line-height: 1; border: none; padding: 0;">Vichār</h1>
         </div>
-        <p style="font-size: 1.2em; color: #555; margin: 0; font-weight: 500;">Privacy Policy</p>
+        <p style="font-size: 1.2em; color: var(--sub-color); margin: 0; font-weight: 500;">Privacy Policy</p>
     </div>
     <p style="text-align: center;"><strong>Effective Date:</strong> July 6, 2026</p>
     
