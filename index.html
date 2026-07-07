@@ -7,7 +7,9 @@
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
         .hero { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 12px; margin-bottom: 25px; }
-        .hero h1 { font-size: 2.5em; margin-bottom: 5px; color: #222; }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px; }
+        .hero img { width: 3em; height: 3em; display: block; }
+        .hero h1 { font-size: 3em; margin: 0; color: #222; line-height: 1; }
         .developer { color: #666; font-size: 0.9rem; margin-top: 0; margin-bottom: 10px; }
         .hero p.subtitle { font-size: 1.1em; color: #555; margin-bottom: 0; }
         .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
@@ -20,8 +22,10 @@
 </head>
 <body>
     <div class="hero">
-        <img src="logo.svg" alt="Vichār Logo" style="width: 20%; min-width: 60px; max-width: 100px; display: block; margin: 0 auto 10px;">
-        <h1>Vichār</h1>
+        <div class="hero-title-container">
+            <img src="logo.svg" alt="Vichār Logo">
+            <h1>Vichār</h1>
+        </div>
         <p class="developer">Published by minebusinessdev@gmail.com</p>
         <p class="subtitle">An advanced, local-first productivity tool that turns your voice into structured knowledge.</p>
     </div>
