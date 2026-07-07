@@ -59,11 +59,29 @@
         }
         
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; background-color: var(--bg); color: var(--text); }
-        .hero { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, var(--hero1) 0%, var(--hero2) 100%); border-radius: 12px; margin-bottom: 25px; }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px; margin-top: 30px; }
-        .hero img { width: 4.5em; height: 4.5em; display: block; filter: invert(var(--icon-invert)); }
-        .hero h1 { font-size: 4.5em; margin: 0; color: var(--h1-color); line-height: 1; border: none; padding: 0; }
+        .hero { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, var(--hero1) 0%, var(--hero2) 100%); border-radius: 12px; margin-bottom: 25px; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); box-sizing: border-box; }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px; margin-top: 30px; transition: all 0.4s ease; }
+        .hero img { width: 4.5em; height: 4.5em; display: block; filter: invert(var(--icon-invert)); transition: all 0.4s ease; }
+        .hero h1 { font-size: 4.5em; margin: 0; color: var(--h1-color); line-height: 1; border: none; padding: 0; transition: all 0.4s ease; }
         h1, h2, h3 { color: var(--h1-color); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .hero p.policy-title { font-size: 1.2em; color: var(--sub-color); margin: 0; font-weight: 500; transition: all 0.4s ease; }
+
+        @media (min-width: 1440px) {
+            .hero.scrolled {
+                position: fixed;
+                top: 40px;
+                left: max(20px, calc(50vw - 450px - 280px));
+                width: 260px;
+                padding: 20px 15px;
+                margin-bottom: 0;
+                z-index: 100;
+                box-shadow: 0 10px 30px var(--card-shadow);
+            }
+            .hero.scrolled .hero-title-container { flex-direction: column; gap: 5px; margin-top: 10px; }
+            .hero.scrolled h1 { font-size: 2.5em; }
+            .hero.scrolled img { width: 3.5em; height: 3.5em; }
+            .hero.scrolled p.policy-title { font-size: 1em; }
+        }
         .steps-box { background: var(--box-bg); padding: 15px; border-left: 4px solid var(--link); margin: 20px 0; border-radius: 4px; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { border: 1px solid var(--border); padding: 12px; text-align: left; }
@@ -96,11 +114,12 @@
     </div>
     <div class="hero">
         <div class="hero-title-container">
-            <img src="logo.svg" alt="Vichār Logo" style="width: 4.5em; height: 4.5em; display: block;">
-            <h1 style="font-size: 4.5em; margin: 0; color: var(--title-color, #222); line-height: 1; border: none; padding: 0;">Vichār</h1>
+            <img src="logo.svg" alt="Vichār Logo">
+            <h1>Vichār</h1>
         </div>
-        <p style="font-size: 1.2em; color: var(--sub-color); margin: 0; font-weight: 500;">Data Deletion & Account Safety</p>
+        <p class="policy-title">Data Deletion & Account Safety</p>
     </div>
+    <div id="hero-placeholder" style="display: none;"></div>
     <p><strong>App Name:</strong> Vichār (ThoughtFlow)</p>
     <p><strong>Developer Contact:</strong> minebusinessdev@gmail.com</p>
     
@@ -180,6 +199,35 @@
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         }
+
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth >= 1440) {
+                const hero = document.querySelector('.hero');
+                const placeholder = document.getElementById('hero-placeholder');
+                if (window.scrollY > 150) {
+                    if (!hero.classList.contains('scrolled')) {
+                        placeholder.style.height = hero.offsetHeight + 'px';
+                        placeholder.style.marginBottom = '25px';
+                        placeholder.style.display = 'block';
+                        hero.classList.add('scrolled');
+                    }
+                } else {
+                    hero.classList.remove('scrolled');
+                    placeholder.style.display = 'none';
+                    placeholder.style.height = '0px';
+                    placeholder.style.marginBottom = '0px';
+                }
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 1440) {
+                const hero = document.querySelector('.hero');
+                const placeholder = document.getElementById('hero-placeholder');
+                hero.classList.remove('scrolled');
+                placeholder.style.display = 'none';
+            }
+        });
 
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
