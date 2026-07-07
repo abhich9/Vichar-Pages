@@ -5,33 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vichār - AI Voice Notes & Knowledge Graph</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
-        .hero { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 12px; margin-bottom: 25px; }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 15px; }
-        .hero img { width: 4.5em; height: 4.5em; display: block; }
-        .hero h1 { font-size: 4.5em; margin: 0; color: #222; line-height: 1; }
-        .developer { color: #666; font-size: 0.9rem; margin-top: 0; margin-bottom: 10px; }
-        .hero p.subtitle { font-size: 1.1em; color: #555; margin-bottom: 0; }
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .feature-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .feature-card h3 { color: #0066cc; margin-top: 0; }
-        footer { margin-top: 50px; text-align: center; color: #777; font-size: 0.9em; border-top: 1px solid #e4e4e7; padding-top: 25px; }
-        footer a:hover { text-decoration: underline; }
+        :root {
+            --bg: #fff;
+            --text: #333;
+            --hero1: #f5f7fa;
+            --hero2: #c3cfe2;
+            --h1-color: #222;
+            --dev-color: #666;
+            --sub-color: #555;
+            --card-bg: #fff;
+            --card-shadow: rgba(0,0,0,0.05);
+            --border: #e4e4e7;
+            --link: #0070f3;
+            --icon-invert: 0;
+            --box-bg: #f4f4f5;
+            --th-bg: #f4f4f5;
+        }
+
+        [data-theme="dark"] {
+            --bg: #111;
+            --text: #eee;
+            --hero1: #1f2228;
+            --hero2: #313540;
+            --h1-color: #fff;
+            --dev-color: #aaa;
+            --sub-color: #ccc;
+            --card-bg: #222;
+            --card-shadow: rgba(0,0,0,0.3);
+            --border: #333;
+            --link: #4aa0ff;
+            --icon-invert: 1;
+            --box-bg: #222;
+            --th-bg: #222;
+        }
 
         @media (prefers-color-scheme: dark) {
-            body { background-color: #111; color: #eee; }
-            .hero { background: linear-gradient(135deg, #1f2228 0%, #313540 100%); }
-            .hero h1 { color: #fff; }
-            .developer { color: #aaa; }
-            .hero p.subtitle { color: #ccc; }
-            .feature-card { background: #222; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-            .feature-card h3 { color: #4aa0ff; }
-            footer { border-top: 1px solid #333; color: #aaa; }
-            footer a { color: #4aa0ff; }
+            :root:not([data-theme="light"]) {
+                --bg: #111;
+                --text: #eee;
+                --hero1: #1f2228;
+                --hero2: #313540;
+                --h1-color: #fff;
+                --dev-color: #aaa;
+                --sub-color: #ccc;
+                --card-bg: #222;
+                --card-shadow: rgba(0,0,0,0.3);
+                --border: #333;
+                --link: #4aa0ff;
+                --icon-invert: 1;
+                --box-bg: #222;
+                --th-bg: #222;
+            }
         }
+        
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; background-color: var(--bg); color: var(--text); position: relative; }
+        .hero { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, var(--hero1) 0%, var(--hero2) 100%); border-radius: 12px; margin-bottom: 25px; }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 15px; }
+        .hero img { width: 4.5em; height: 4.5em; display: block; filter: invert(var(--icon-invert)); }
+        .hero h1 { font-size: 4.5em; margin: 0; color: var(--h1-color); line-height: 1; border: none; padding-bottom: 0; }
+        .developer { color: var(--dev-color); font-size: 0.9rem; margin-top: 0; margin-bottom: 10px; }
+        .hero p.subtitle { font-size: 1.1em; color: var(--sub-color); margin-bottom: 0; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .feature-card { background: var(--card-bg); padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px var(--card-shadow); }
+        .feature-card h3 { color: var(--link); margin-top: 0; }
+        footer { margin-top: 50px; text-align: center; color: var(--dev-color); font-size: 0.9em; border-top: 1px solid var(--border); padding-top: 25px; }
+        a { color: var(--link); text-decoration: none; font-weight: 500; }
+        footer a { margin: 0 10px; }
+        a:hover { text-decoration: underline; }
+
+        .top-controls { display: flex; justify-content: flex-end; align-items: center; gap: 15px; margin-bottom: 20px; z-index: 1000; }
+        .theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+        .theme-toggle:hover { background: rgba(128,128,128,0.1); }
     </style>
+    <script type="text/javascript">
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) { document.documentElement.setAttribute('data-theme', storedTheme); }
+    </script>
 </head>
 <body>
+    <div class="top-controls">
+        <div id="google_translate_element"></div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌓</button>
+    </div>
     <div class="hero">
         <div class="hero-title-container">
             <img src="logo.svg" alt="Vichār Logo">
@@ -69,5 +124,27 @@
             <a href="datasafety.html">Data Deletion & Safety</a>
         </p>
     </footer>
+
+    <script type="text/javascript">
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let newTheme;
+            
+            if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+                newTheme = 'light';
+            } else {
+                newTheme = 'dark';
+            }
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
