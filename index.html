@@ -7,17 +7,28 @@
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
         .hero { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 12px; margin-bottom: 25px; }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px; }
-        .hero img { width: 3em; height: 3em; display: block; }
-        .hero h1 { font-size: 3em; margin: 0; color: #222; line-height: 1; }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 15px; }
+        .hero img { width: 4.5em; height: 4.5em; display: block; }
+        .hero h1 { font-size: 4.5em; margin: 0; color: #222; line-height: 1; }
         .developer { color: #666; font-size: 0.9rem; margin-top: 0; margin-bottom: 10px; }
         .hero p.subtitle { font-size: 1.1em; color: #555; margin-bottom: 0; }
         .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .feature-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .feature-card h3 { color: #0066cc; margin-top: 0; }
         footer { margin-top: 50px; text-align: center; color: #777; font-size: 0.9em; border-top: 1px solid #e4e4e7; padding-top: 25px; }
-        footer a { color: #0070f3; text-decoration: none; font-weight: 500; margin: 0 10px; }
         footer a:hover { text-decoration: underline; }
+
+        @media (prefers-color-scheme: dark) {
+            body { background-color: #111; color: #eee; }
+            .hero { background: linear-gradient(135deg, #1f2228 0%, #313540 100%); }
+            .hero h1 { color: #fff; }
+            .developer { color: #aaa; }
+            .hero p.subtitle { color: #ccc; }
+            .feature-card { background: #222; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+            .feature-card h3 { color: #4aa0ff; }
+            footer { border-top: 1px solid #333; color: #aaa; }
+            footer a { color: #4aa0ff; }
+        }
     </style>
 </head>
 <body>
